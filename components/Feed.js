@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 
-export default function Feed(){
+export default function Feed({navigation}){
+
+    /*const [profiles, setProfiles] = useState([]);
+
+    useEffect(function(){                          //Acesso ao BackEnd
+      async function getData(){
+        const response = await fetch('https://mobile.ect.ufrn.br:3000/stories');  //Puxa item do BackEnd
+        const profilesServidor = await response.json();
+        setProfiles(profilesServidor)
+
+      }
+    },[])*/
 
     const profiles = [
       {
@@ -67,14 +78,8 @@ export default function Feed(){
       },
       {
         id: 11,
-        nome: 'Luva de Padreiro',
+        nome: 'Luva de Pedreiro',
         src: require('../assets/images/pedreiro/pedreiro2.png'),
-        nota: 4.5,
-      },
-      {
-        id: 12,
-        nome: 'Saulo Hernandes',
-        src: require('../assets/images/pedreiro/pedreiro5.png'),
         nota: 4.5,
       },
     ];
@@ -83,7 +88,7 @@ export default function Feed(){
       return <View style={styles.profile}>
                 <View style={styles.profile}>
                   <Image style={styles.profilePicture} source={item.src}></Image>
-                  <Text style={styles.profileName}> {item.nome}</Text>
+                  <Text style={styles.profileName} onPress={()=> navigation.navigate('ProfileScreen')}> {item.nome}</Text>
                 </View>
                 <View style={styles.profileIcons}>
                   <FontAwesome5 name='star' size={30} color='yellow'/>
