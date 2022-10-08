@@ -13,7 +13,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator> 
         <Stack.Screen name = 'HomeScreen' component={HomeScreen} options={{headerShown:false}}/> 
-        <Stack.Screen name = 'ProfileScreen' component={ProfileScreen}/> 
+        <Stack.Screen name = 'ProfileScreen' component={ProfileScreen} options={{title:'Perfil do Prestador'}}/> 
       </Stack.Navigator>  
     </NavigationContainer>       //Aqui dentro colocamos cada Stack representando uma página 
   );

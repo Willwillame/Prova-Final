@@ -1,94 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, FlatList} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
+import { getProfessional } from '../services/professionalService';
 
 export default function Feed({navigation}){
 
-    /*const [profiles, setProfiles] = useState([]);
+    const [profiles, setProfiles] = useState([]);
 
     useEffect(function(){                          //Acesso ao BackEnd
       async function getData(){
-        const response = await fetch('https://mobile.ect.ufrn.br:3000/stories');  //Puxa item do BackEnd
-        const profilesServidor = await response.json();
-        setProfiles(profilesServidor)
-
+        const prof = getProfessional()
+        setProfiles(prof);
       }
-    },[])*/
+      getData();
+    },[])
 
-    const profiles = [
-      {
-        id: 1,
-        nome: 'Carlos Caixa Dágua',
-        src: require('../assets/images/pedreiro/pedreiro1.png'),
-        nota:5.0,
-      },
-      {
-        id: 2,
-        nome: 'Luva de Pedreiro',
-        src: require('../assets/images/pedreiro/pedreiro2.png'),
-        nota: 5.0,
-      },
-      {
-        id: 3,
-        nome: 'Marcio Araújo',
-        src: require('../assets/images/pedreiro/pedreiro3.png'),
-        nota: 5.0,
-      },
-      {
-        id: 4,
-        nome: 'Cleiton Xavier',
-        src: require('../assets/images/pedreiro/pedreiro4.png'),
-        nota: 4.9,
-      },
-      {
-        id: 5,
-        nome: 'Saulo Hernandes',
-        src: require('../assets/images/pedreiro/pedreiro5.png'),
-        nota: 4.9,
-      },
-      {
-        id: 6,
-        nome: 'Lindomar Castilho',
-        src: require('../assets/images/pedreiro/pedreiro6.png'),
-        nota: 4.8,
-      },
-      {
-        id: 7,
-        nome: 'Bartô Galeno',
-        src: require('../assets/images/pedreiro/pedreiro7.png'),
-        nota: 4.8,
-      },
-      {
-        id: 8,
-        nome: 'Genival Santos',
-        src: require('../assets/images/pedreiro/pedreiro8.png'),
-        nota: 4.8,
-      },
-      {
-        id: 9,
-        nome: 'Pereira Sales',
-        src: require('../assets/images/pedreiro/pedreiro9.png'),
-        nota: 4.7,
-      },
-      {
-        id: 10,
-        nome: 'Bartô Galeno',
-        src: require('../assets/images/pedreiro/pedreiro7.png'),
-        nota: 4.6,
-      },
-      {
-        id: 11,
-        nome: 'Luva de Pedreiro',
-        src: require('../assets/images/pedreiro/pedreiro2.png'),
-        nota: 4.5,
-      },
-    ];
 
     function renderItem({item}){
       return <View style={styles.profile}>
                 <View style={styles.profile}>
                   <Image style={styles.profilePicture} source={item.src}></Image>
-                  <Text style={styles.profileName} onPress={()=> navigation.navigate('ProfileScreen')}> {item.nome}</Text>
+                  <Text style={styles.profileName} onPress={()=> navigation.navigate('ProfileScreen', { idPrestador:item.id })}> {item.nome}</Text>
                 </View>
                 <View style={styles.profileIcons}>
                   <FontAwesome5 name='star' size={30} color='yellow'/>
@@ -110,7 +42,9 @@ export default function Feed({navigation}){
 }
 
 const styles = StyleSheet.create({
-    feed:{},
+    feed:{
+      flex:1,
+    },
     profile:{
       height: 90,
       flexDirection: 'row',
