@@ -7,7 +7,7 @@ import Header from '../components/Header.js';
 import TitleBar from '../components/TitleBar.js';
 import Feed from '../components/Feed.js';
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({navigation, index}) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />

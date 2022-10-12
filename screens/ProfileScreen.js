@@ -28,7 +28,7 @@ export default function ProfileScreen({route}){
                 </View>                      
             </View>
             <View style={styles.body}>
-
+                <Text>{prof.texto}</Text>
             </View>
         </View>
         
@@ -38,10 +38,11 @@ export default function ProfileScreen({route}){
 const styles = StyleSheet.create({
     FeedPage2:{
         flex:1,
+        backgroundColor: '#dfcdc2',
     },
     ProfileHeader:{
         height:180,
-        backgroundColor:'blue',
+        backgroundColor:'#dfcdc2',
         flexDirection:'row', 
         justifyContent:'space-between',      
     },
