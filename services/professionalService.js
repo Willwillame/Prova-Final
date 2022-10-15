@@ -1,3 +1,5 @@
+import { FlatList } from 'react-native-gesture-handler';
+
 const profiles = [
     {
       id: 1,

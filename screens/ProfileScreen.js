@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Image} from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import { useState } from 'react';
 
 import { getProfessionalbyid } from '../services/professionalService';
@@ -22,7 +22,7 @@ export default function ProfileScreen({route}){
                     <Image style={styles.ProfilePhoto} source={prof.src}></Image>
                 </View>
                 <View style={styles.TextHeader}>
-                    <Text style={styles.ProfessionalName}>{prof.nome}</Text>
+                        <Text style={styles.ProfessionalName}>{prof.nome}</Text>
                     <Text style={styles.ExpText}>{prof.idade} anos</Text>
                     <Text style={styles.ExpText}>{prof.exp} anos de experiência</Text>
                 </View>                      

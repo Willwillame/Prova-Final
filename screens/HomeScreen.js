@@ -11,7 +11,7 @@ export default function HomeScreen({navigation, index}) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
-      <Header/>
+      <Header navigation={navigation}/>
       <TitleBar/>
       <Feed navigation={navigation}/>
     </View>
