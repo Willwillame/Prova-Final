@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { StyleSheet, TextInput, View, Text, AsyncStorage, Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import {user, password, token} from './firebase'
 
 
 export default function LoginScreen({navigation}) {
