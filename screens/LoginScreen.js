@@ -1,9 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, TextInput, View, Text, AsyncStorage, Alert} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { StyleSheet, TextInput, View, Text, Alert} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import {user, password, token} from './firebase'
 
 
 export default function LoginScreen({navigation}) {
@@ -13,8 +11,6 @@ export default function LoginScreen({navigation}) {
     async function logar(){
         const response = await fetch('https://mobile.ect.ufrn.br:3000/login', headerOptions);
         if (response.status === 200){
-            const token = await response.text();
-            await AsyncStorage.setItem('token', token);
             navigation.navigate('HomeScreen');
         } else{
             Alert.alert(

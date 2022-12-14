@@ -1,38 +1,36 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, View, Text, FlatList} from 'react-native';
 import { useState } from 'react';
+import { getPedreiros } from '../services/pedreiroService';
 
-import { getProfessionalbyid } from '../services/professionalService';
 
-export default function ProfileScreen({route}){
+export default function ProfileScreen() {
 
-    const [prof, setProf] = useState([]);
-    useEffect(function(){                          //Acesso ao BackEnd
-        async function getData(){
-          const prof = getProfessionalbyid(route.params.idPrestador)
-          setProf(prof)
-        }
-        getData();
-      },[])
+    const [pedreiros, setPedreiros] = useState([]);
+    useEffect(() => {
+      getPedreiros();
+    }, []);
 
-    return(
-        <View style={styles.FeedPage2}>
-            <View style={styles.ProfileHeader}>
-                <View style={styles.ProfileHeaderItems}>
-                    <Image style={styles.ProfilePhoto} source={prof.src}></Image>
+    const getPedreiros = async () => {
+      const pedreiros = await getPedreiros();
+      setPedreiros(pedreiros);
+    };
+
+        return(
+            <View style={styles.FeedPage2}>
+                <View style={styles.ProfileHeader}>
+                    <View style={styles.TextHeader}>
+                            <Text style={styles.ProfessionalName}>{pedreiros.nome}</Text>
+                        <Text style={styles.ExpText}>{pedreiros.idade} anos</Text>
+                        <Text style={styles.ExpText}>{pedreiros.exp} anos de experiência</Text>
+                        <Text>{pedreiros.texto}</Text>
+                    </View>                      
                 </View>
-                <View style={styles.TextHeader}>
-                        <Text style={styles.ProfessionalName}>{prof.nome}</Text>
-                    <Text style={styles.ExpText}>{prof.idade} anos</Text>
-                    <Text style={styles.ExpText}>{prof.exp} anos de experiência</Text>
-                </View>                      
-            </View>
-            <View style={styles.body}>
-                <Text>{prof.texto}</Text>
-            </View>
-        </View>
-        
-    )
+            </View>  
+        )
+      
+    
+    
 }
 
 const styles = StyleSheet.create({
@@ -70,8 +68,5 @@ const styles = StyleSheet.create({
         alignItems:'flex-start',
         marginRight:10,
     },
-    body:{
-        
-    }
 
 })
